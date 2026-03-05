@@ -162,7 +162,7 @@ def build_shell_model(
 
             shell = loader.from_config(
                 config,
-                dtype=dtype,
+                torch_dtype=dtype,
                 trust_remote_code=trust_remote_code,
                 **init_kwargs
             )

@@ -53,10 +53,7 @@ class StageInputsCapture:
             ).unsqueeze(0).expand(calibration_data[i]['embed_inputs'].shape[0], -1)
             position_ids.append(position_id)
 
-            position_embeddings = self.gptq_model.turtle_model.model.rotary_emb(calibration_data[i]['embed_inputs'],
-                                                                                position_id)
-            layer_input_kwargs.append({'past_key_values':None, 'cache_position':position_ids[0], 'position_embeddings':position_embeddings})
-
+            layer_input_kwargs.append({'past_key_values': None, 'cache_position': position_ids[0]})
 
         return InputCache(
             layer_inputs=layer_inputs,
