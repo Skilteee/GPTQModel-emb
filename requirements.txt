@@ -9,7 +9,7 @@ causal_conv1d==1.6.0
 mamba_ssm==2.3.0
 torchao==0.15.0
 compressed_tensors==0.14.0
-numpy==2.4.2
+numpy==2.2.6
 pandas==3.0.1
 pyarrow==23.0.0
 jsonlines==4.0.0
