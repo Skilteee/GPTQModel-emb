@@ -406,7 +406,8 @@ def ModelLoader(cls):
 
         qcfg.calculate_bits_per_weight()
 
-        tokenizer = AutoTokenizer.from_pretrained(model_id_or_path, trust_remote_code=trust_remote_code)
+        tokenizer = None
+        # tokenizer = AutoTokenizer.from_pretrained(model_id_or_path, trust_remote_code=trust_remote_code, use_fast=False)
 
         if backend == BACKEND.VLLM or backend == BACKEND.SGLANG:
             if backend == BACKEND.VLLM:
@@ -538,7 +539,7 @@ def ModelLoader(cls):
                     log.info("Loader: Auto enabling flash attention2")
 
             model = cls.loader.from_config(
-                config, trust_remote_code=trust_remote_code, dtype=dtype, **args
+                config, trust_remote_code=trust_remote_code, **args
             )
             model.checkpoint_file_name = model_save_name
 

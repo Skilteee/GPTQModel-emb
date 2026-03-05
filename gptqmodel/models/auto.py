@@ -93,59 +93,59 @@ from .definitions.gemma2 import Gemma2QModel  # noqa: E402
 from .definitions.gemma3 import Gemma3ForConditionalGenerationGPTQ, Gemma3QModel  # noqa: E402
 from .definitions.glm import GlmQModel  # noqa: E402
 from .definitions.glm4_moe import GLM4MoEGPTQ  # noqa: E402
-from .definitions.glm4v import Glm4vGPTQ  # noqa: E402
-from .definitions.gpt2 import GPT2QModel  # noqa: E402
-from .definitions.gpt_bigcode import GptBigCodeQModel  # noqa: E402
-from .definitions.gpt_neo import GptNeoQModel  # noqa: E402
-from .definitions.gpt_neox import GPTNeoXQModel  # noqa: E402
-from .definitions.gpt_oss import GPTOSSGPTQ  # noqa: E402
-from .definitions.gptj import GptJQModel  # noqa: E402
-from .definitions.granitemoehybrid import GraniteMoeHybridQModel
-from .definitions.grinmoe import GrinMoeQModel  # noqa: E402
-from .definitions.hymba import HymbaQModel  # noqa: E402
-from .definitions.instella import InstellaQModel  # noqa: E402
-from .definitions.internlm import InternLMQModel  # noqa: E402
-from .definitions.internlm2 import InternLM2QModel  # noqa: E402
-from .definitions.klear import KlearQModel  # noqa: E402
-from .definitions.lfm2_moe import LFM2MoeQModel  # noqa: E402
+# from .definitions.glm4v import Glm4vGPTQ  # noqa: E402
+# from .definitions.gpt2 import GPT2QModel  # noqa: E402
+# from .definitions.gpt_bigcode import GptBigCodeQModel  # noqa: E402
+# from .definitions.gpt_neo import GptNeoQModel  # noqa: E402
+# from .definitions.gpt_neox import GPTNeoXQModel  # noqa: E402
+# from .definitions.gpt_oss import GPTOSSGPTQ  # noqa: E402
+# from .definitions.gptj import GptJQModel  # noqa: E402
+# from .definitions.granitemoehybrid import GraniteMoeHybridQModel
+# from .definitions.grinmoe import GrinMoeQModel  # noqa: E402
+# from .definitions.hymba import HymbaQModel  # noqa: E402
+# from .definitions.instella import InstellaQModel  # noqa: E402
+# from .definitions.internlm import InternLMQModel  # noqa: E402
+# from .definitions.internlm2 import InternLM2QModel  # noqa: E402
+# from .definitions.klear import KlearQModel  # noqa: E402
+# from .definitions.lfm2_moe import LFM2MoeQModel  # noqa: E402
 from .definitions.llama import LlamaQModel  # noqa: E402
-from .definitions.llama4 import Llama4QModel  # noqa: E402
-from .definitions.llava_qwen2 import LlavaQwen2QModel  # noqa: E402
-from .definitions.longcat_flash import LongCatFlashQModel  # noqa: E402
-from .definitions.mimo import MimoQModel  # noqa: E402
-from .definitions.minicpm import MiniCPMGPTQ  # noqa: E402
-from .definitions.minicpm3 import MiniCpm3QModel  # noqa: E402
-from .definitions.minimax_m2 import MiniMaxM2GPTQ  # noqa: E402
-from .definitions.mistral3 import Mistral3GPTQ
-from .definitions.mixtral import MixtralQModel  # noqa: E402
-from .definitions.mllama import MLlamaQModel  # noqa: E402
-from .definitions.mobilellm import MobileLLMQModel  # noqa: E402
-from .definitions.moss import MossQModel  # noqa: E402
-from .definitions.mpt import MptQModel  # noqa: E402
-from .definitions.nemotron_h import NemotronHQModel  # noqa: E402
-from .definitions.opt import OptQModel  # noqa: E402
-from .definitions.ovis import OvisQModel  # noqa: E402
-from .definitions.ovis2 import Ovis2QModel  # noqa: E402
-from .definitions.pangu_alpha import PanguAlphaQModel  # noqa: E402
-from .definitions.phi import PhiQModel  # noqa: E402
-from .definitions.phi3 import Phi3QModel, PhiMoEGPTQForCausalLM  # noqa: E402
-from .definitions.phi4 import Phi4MMGPTQ  # noqa: E402
-from .definitions.qwen import QwenQModel  # noqa: E402
-from .definitions.qwen2 import Qwen2QModel  # noqa: E402
-from .definitions.qwen2_5_omni import Qwen2_5_OmniGPTQ
-from .definitions.qwen2_5_vl import Qwen2_5_VLQModel  # noqa: E402
-from .definitions.qwen2_moe import Qwen2MoeQModel  # noqa: E402
-from .definitions.qwen2_vl import Qwen2VLQModel  # noqa: E402
-from .definitions.qwen3 import Qwen3QModel  # noqa: E402
-from .definitions.qwen3_moe import Qwen3MoeQModel  # noqa: E402
-from .definitions.qwen3_next import Qwen3NextGPTQ  # noqa: E402
-from .definitions.qwen3_omni_moe import Qwen3OmniMoeGPTQ
-from .definitions.qwen3_vl import Qwen3_VLQModel
-from .definitions.rw import RwgQModel  # noqa: E402
-from .definitions.starcoder2 import Starcoder2QModel  # noqa: E402
-from .definitions.telechat2 import TeleChat2QModel
-from .definitions.voxtral import VoxtralGPTQ  # noqa: E402
-from .definitions.xverse import XverseQModel  # noqa: E402
+# from .definitions.llama4 import Llama4QModel  # noqa: E402
+# from .definitions.llava_qwen2 import LlavaQwen2QModel  # noqa: E402
+# from .definitions.longcat_flash import LongCatFlashQModel  # noqa: E402
+# from .definitions.mimo import MimoQModel  # noqa: E402
+# from .definitions.minicpm import MiniCPMGPTQ  # noqa: E402
+# from .definitions.minicpm3 import MiniCpm3QModel  # noqa: E402
+# from .definitions.minimax_m2 import MiniMaxM2GPTQ  # noqa: E402
+# from .definitions.mistral3 import Mistral3GPTQ
+# from .definitions.mixtral import MixtralQModel  # noqa: E402
+# from .definitions.mllama import MLlamaQModel  # noqa: E402
+# from .definitions.mobilellm import MobileLLMQModel  # noqa: E402
+# from .definitions.moss import MossQModel  # noqa: E402
+# from .definitions.mpt import MptQModel  # noqa: E402
+# from .definitions.nemotron_h import NemotronHQModel  # noqa: E402
+# from .definitions.opt import OptQModel  # noqa: E402
+# from .definitions.ovis import OvisQModel  # noqa: E402
+# from .definitions.ovis2 import Ovis2QModel  # noqa: E402
+# from .definitions.pangu_alpha import PanguAlphaQModel  # noqa: E402
+# from .definitions.phi import PhiQModel  # noqa: E402
+# from .definitions.phi3 import Phi3QModel, PhiMoEGPTQForCausalLM  # noqa: E402
+# from .definitions.phi4 import Phi4MMGPTQ  # noqa: E402
+# from .definitions.qwen import QwenQModel  # noqa: E402
+# from .definitions.qwen2 import Qwen2QModel  # noqa: E402
+# from .definitions.qwen2_5_omni import Qwen2_5_OmniGPTQ
+# from .definitions.qwen2_5_vl import Qwen2_5_VLQModel  # noqa: E402
+# from .definitions.qwen2_moe import Qwen2MoeQModel  # noqa: E402
+# from .definitions.qwen2_vl import Qwen2VLQModel  # noqa: E402
+# from .definitions.qwen3 import Qwen3QModel  # noqa: E402
+# from .definitions.qwen3_moe import Qwen3MoeQModel  # noqa: E402
+# from .definitions.qwen3_next import Qwen3NextGPTQ  # noqa: E402
+# from .definitions.qwen3_omni_moe import Qwen3OmniMoeGPTQ
+# from .definitions.qwen3_vl import Qwen3_VLQModel
+# from .definitions.rw import RwgQModel  # noqa: E402
+# from .definitions.starcoder2 import Starcoder2QModel  # noqa: E402
+# from .definitions.telechat2 import TeleChat2QModel
+# from .definitions.voxtral import VoxtralGPTQ  # noqa: E402
+# from .definitions.xverse import XverseQModel  # noqa: E402
 
 
 # make quants and inference more determinisitc
@@ -158,100 +158,100 @@ MODEL_MAP = {
     "dream": DreamQModel,
     "bloom": BloomQModel,
     "brumby": BrumbyQModel,
-    "gpt_neo": GptNeoQModel,
+    # "gpt_neo": GptNeoQModel,
     "kimi_k2": DeepSeekV3QModel, # 100% DeepSeekV3QModel clone
-    "klear": KlearQModel,
-    "gpt_neox": GPTNeoXQModel,
-    "gptj": GptJQModel,
-    "gpt2": GPT2QModel,
+    # "klear": KlearQModel,
+    # "gpt_neox": GPTNeoXQModel,
+    # "gptj": GptJQModel,
+    # "gpt2": GPT2QModel,
     "llama": LlamaQModel,
-    "llama4": Llama4QModel,
-    "opt": OptQModel,
-    "moss": MossQModel,
-    "chatglm": ChatGLMQModel,
-    "glm": GlmQModel,
-    "glm4": GlmQModel,
-    "glm4v": Glm4vGPTQ,
-    "glm4_moe": GLM4MoEGPTQ,
-    "gpt_bigcode": GptBigCodeQModel,
-    "codegen": CodeGenQModel,
-    "cohere": LlamaQModel, # 100% llama clone
-    "cohere2": LlamaQModel, # 100% llama clone
-    "refinedWebModel": RwgQModel,
-    "refinedWeb": RwgQModel,
-    "falcon": RwgQModel,
-    "baichuan": BaiChuanQModel,
-    "internlm": InternLMQModel,
-    "internlm2": InternLM2QModel,
-    "qwen": QwenQModel,
-    "mistral": LlamaQModel, # 100% llama clone
-    "yi": LlamaQModel, # 100% llama clone
-    "xverse": XverseQModel,
+    # "llama4": Llama4QModel,
+    # "opt": OptQModel,
+    # "moss": MossQModel,
+    # "chatglm": ChatGLMQModel,
+    # "glm": GlmQModel,
+    # "glm4": GlmQModel,
+    # "glm4v": Glm4vGPTQ,
+    # "glm4_moe": GLM4MoEGPTQ,
+    # "gpt_bigcode": GptBigCodeQModel,
+    # "codegen": CodeGenQModel,
+    # "cohere": LlamaQModel, # 100% llama clone
+    # "cohere2": LlamaQModel, # 100% llama clone
+    # "refinedWebModel": RwgQModel,
+    # "refinedWeb": RwgQModel,
+    # "falcon": RwgQModel,
+    # "baichuan": BaiChuanQModel,
+    # "internlm": InternLMQModel,
+    # "internlm2": InternLM2QModel,
+    # "qwen": QwenQModel,
+    # "mistral": LlamaQModel, # 100% llama clone
+    # "yi": LlamaQModel, # 100% llama clone
+    # "xverse": XverseQModel,
     "deci": DeciLMQModel,
     "nemotron-nas": DeciLMQModel,
-    "stablelm_epoch": LlamaQModel, # 100% llama clone
-    "stablelm": LlamaQModel, # 100% llama clone
-    "starcoder2": Starcoder2QModel,
-    "mixtral": MixtralQModel,
-    "qwen2": Qwen2QModel,
-    "qwen3": Qwen3QModel,
-    "longllama": LlamaQModel,  # 100% llama clone
-    "gemma": LlamaQModel, # 100% llama clone
+    # "stablelm_epoch": LlamaQModel, # 100% llama clone
+    # "stablelm": LlamaQModel, # 100% llama clone
+    # "starcoder2": Starcoder2QModel,
+    # "mixtral": MixtralQModel,
+    # "qwen2": Qwen2QModel,
+    # "qwen3": Qwen3QModel,
+    # "longllama": LlamaQModel,  # 100% llama clone
+    # "gemma": LlamaQModel, # 100% llama clone
     "gemma2": Gemma2QModel,
     "gemma3_text": Gemma3QModel,
     "gemma3": Gemma3ForConditionalGenerationGPTQ,
-    "phi": PhiQModel,
-    "phi3": Phi3QModel,
-    "phi4mm": Phi4MMGPTQ,
-    "phimoe": PhiMoEGPTQForCausalLM,
-    "mpt": MptQModel,
-    "minicpm": MiniCPMGPTQ,
-    "minicpm3": MiniCpm3QModel,
-    "minimax": MiniMaxM2GPTQ,
-    "minimax_m2": MiniMaxM2GPTQ,
-    "qwen2_moe": Qwen2MoeQModel,
-    "qwen3_moe": Qwen3MoeQModel,
-    "qwen3_next": Qwen3NextGPTQ,
-    "qwen2_vl": Qwen2VLQModel,
-    "qwen2_vl_text": Qwen2VLQModel,
-    "qwen2_5_vl": Qwen2_5_VLQModel,
-    "qwen2_5_vl_text": Qwen2_5_VLQModel,
-    "qwen2_5_omni": Qwen2_5_OmniGPTQ,
-    "qwen3_omni_moe": Qwen3OmniMoeGPTQ,
-    "qwen3_vl": Qwen3_VLQModel,
+    # "phi": PhiQModel,
+    # "phi3": Phi3QModel,
+    # "phi4mm": Phi4MMGPTQ,
+    # "phimoe": PhiMoEGPTQForCausalLM,
+    # "mpt": MptQModel,
+    # "minicpm": MiniCPMGPTQ,
+    # "minicpm3": MiniCpm3QModel,
+    # "minimax": MiniMaxM2GPTQ,
+    # "minimax_m2": MiniMaxM2GPTQ,
+    # "qwen2_moe": Qwen2MoeQModel,
+    # "qwen3_moe": Qwen3MoeQModel,
+    # "qwen3_next": Qwen3NextGPTQ,
+    # "qwen2_vl": Qwen2VLQModel,
+    # "qwen2_vl_text": Qwen2VLQModel,
+    # "qwen2_5_vl": Qwen2_5_VLQModel,
+    # "qwen2_5_vl_text": Qwen2_5_VLQModel,
+    # "qwen2_5_omni": Qwen2_5_OmniGPTQ,
+    # "qwen3_omni_moe": Qwen3OmniMoeGPTQ,
+    # "qwen3_vl": Qwen3_VLQModel,
     "dbrx": DbrxQModel,
     "dbrx_converted": DbrxConvertedQModel,
     "deepseek_v2": DeepSeekV2QModel,
     "deepseek_v3": DeepSeekV3QModel,
     "dots1": Dots1QModel,
     "exaone": ExaOneQModel,
-    "grinmoe": GrinMoeQModel,
-    "mllama": MLlamaQModel,
-    "marin": Qwen3QModel,
-    "granite": LlamaQModel, # 100% llama clone
-    "granitemoehybrid": GraniteMoeHybridQModel,
-    "mobilellm": MobileLLMQModel,
-    "hymba": HymbaQModel,
-    "olmo2": LlamaQModel, # 100% llama clone
-    "ovis": OvisQModel,
-    "ovis2": Ovis2QModel,
-    "telechat": TeleChat2QModel,
-    "instella": InstellaQModel,
-    "mimo": MimoQModel,
+    # "grinmoe": GrinMoeQModel,
+    # "mllama": MLlamaQModel,
+    # "marin": Qwen3QModel,
+    # "granite": LlamaQModel, # 100% llama clone
+    # "granitemoehybrid": GraniteMoeHybridQModel,
+    # "mobilellm": MobileLLMQModel,
+    # "hymba": HymbaQModel,
+    # "olmo2": LlamaQModel, # 100% llama clone
+    # "ovis": OvisQModel,
+    # "ovis2": Ovis2QModel,
+    # "telechat": TeleChat2QModel,
+    # "instella": InstellaQModel,
+    # "mimo": MimoQModel,
     "falcon_h1": FalconH1QModel,
-    "gpt_pangu": PanguAlphaQModel,
+    # "gpt_pangu": PanguAlphaQModel,
     "ernie4_5": Ernie4_5QModel,
     "ernie4_5_moe": Ernie4_5_MoeQModel,
-    "seed_oss": LlamaQModel, # 100% llama clone
-    "gpt_oss": GPTOSSGPTQ,
-    "longcat_flash": LongCatFlashQModel,
-    "llava_qwen2": LlavaQwen2QModel,
-    "nemotron_h": NemotronHQModel,
+    # "seed_oss": LlamaQModel, # 100% llama clone
+    # "gpt_oss": GPTOSSGPTQ,
+    # "longcat_flash": LongCatFlashQModel,
+    # "llava_qwen2": LlavaQwen2QModel,
+    # "nemotron_h": NemotronHQModel,
     "bailing_moe": BailingMoeQModel,
-    "lfm2_moe": LFM2MoeQModel,
-    "mistral3": Mistral3GPTQ,
+    # "lfm2_moe": LFM2MoeQModel,
+    # "mistral3": Mistral3GPTQ,
     "afmoe": AfMoeQModel,
-    "voxtral": VoxtralGPTQ,
+    # "voxtral": VoxtralGPTQ,
 }
 
 SUPPORTED_MODELS = list(MODEL_MAP.keys())

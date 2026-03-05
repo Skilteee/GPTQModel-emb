@@ -224,26 +224,42 @@ def _is_accelerate_device_map_keyword(value: str) -> bool:
 def _is_accelerate_offload_target(value: str) -> bool:
     return value.strip().lower() in ACCELERATE_OFFLOAD_TARGETS
 
+def _current_accelerator():
+    accel = getattr(torch, "accelerator", None)
+    if accel is None or not hasattr(accel, "current_accelerator"):
+        return None
+    try:
+        return accel.current_accelerator()
+    except Exception:
+        return None
 
-def normalize_device_device_map(device: Optional[Union[str, torch.device]], device_map: Optional[Union[str, Dict]]) -> Optional[DEVICE]:
+def _fallback_accel_type():
+    if torch.cuda.is_available():
+        return "cuda"
+    if getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
+
+def normalize_device_device_map(device, device_map):
     normalized_device = None
-    accelerator = torch.accelerator.current_accelerator()
+    accelerator = _current_accelerator()
+    accel_type = accelerator.type if accelerator is not None else _fallback_accel_type()
+
     if device is None:
         if device_map is not None:
             if isinstance(device_map, str):
                 if _is_accelerate_device_map_keyword(device_map):
-                    return DEVICE(accelerator.type) if accelerator is not None else DEVICE.CPU
+                    return DEVICE(accel_type) if accel_type else DEVICE.CPU
                 devices = {device_map}
             else:
                 devices = set(device_map.values())
             normalized_devices = set()
             for device in devices:
-                # Returning None means quant linear will be automatically selected.
                 if device is None:
                     continue
                 if isinstance(device, str):
                     if _is_accelerate_device_map_keyword(device) or device == "auto":
-                        return DEVICE(accelerator.type) if accelerator is not None else DEVICE.CPU
+                        return DEVICE(accel_type) if accel_type else DEVICE.CPU
                     if _is_accelerate_offload_target(device):
                         continue
                 normalized_devices.add(normalize_device(device))
@@ -262,10 +278,52 @@ def normalize_device_device_map(device: Optional[Union[str, torch.device]], devi
         else:
             raise ValueError(f"device must be a string or torch.device, got {type(device)}")
 
-    # map fake cuda to actual rocm
     if normalized_device == DEVICE.CUDA and IS_ROCM:
         normalized_device = DEVICE.ROCM
     return normalized_device
+
+
+# def normalize_device_device_map(device: Optional[Union[str, torch.device]], device_map: Optional[Union[str, Dict]]) -> Optional[DEVICE]:
+#     normalized_device = None
+#     accelerator = torch.accelerator.current_accelerator()
+#     if device is None:
+#         if device_map is not None:
+#             if isinstance(device_map, str):
+#                 if _is_accelerate_device_map_keyword(device_map):
+#                     return DEVICE(accelerator.type) if accelerator is not None else DEVICE.CPU
+#                 devices = {device_map}
+#             else:
+#                 devices = set(device_map.values())
+#             normalized_devices = set()
+#             for device in devices:
+#                 # Returning None means quant linear will be automatically selected.
+#                 if device is None:
+#                     continue
+#                 if isinstance(device, str):
+#                     if _is_accelerate_device_map_keyword(device) or device == "auto":
+#                         return DEVICE(accelerator.type) if accelerator is not None else DEVICE.CPU
+#                     if _is_accelerate_offload_target(device):
+#                         continue
+#                 normalized_devices.add(normalize_device(device))
+#             if len(normalized_devices) == 1:
+#                 d = normalized_devices.pop()
+#                 if d in DEVICE:
+#                     normalized_device = d
+#             elif len(normalized_devices) > 1:
+#                 normalized_devices.discard(DEVICE.CPU)
+#                 normalized_device = normalized_devices.pop()
+#     else:
+#         if isinstance(device, str):
+#             normalized_device = normalize_device(device)
+#         elif isinstance(device, torch.device):
+#             normalized_device = DEVICE(device.type)
+#         else:
+#             raise ValueError(f"device must be a string or torch.device, got {type(device)}")
+#
+#     # map fake cuda to actual rocm
+#     if normalized_device == DEVICE.CUDA and IS_ROCM:
+#         normalized_device = DEVICE.ROCM
+#     return normalized_device
 
 
 def auto_select_device(device: Optional[DEVICE], backend: Optional[BACKEND]) -> DEVICE:

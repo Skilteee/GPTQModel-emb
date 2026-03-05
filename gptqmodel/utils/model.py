@@ -1207,6 +1207,9 @@ def auto_dtype(config: PretrainedConfig,
 
     # get dtype from config
     dtype = getattr(config, "dtype") if hasattr(config, "dtype") else getattr(config, "torch_dtype")
+
+    if isinstance(dtype, str):
+        dtype = _DTYPE_STR_MAP.get(dtype.lower(), dtype)
     if dtype and not isinstance(dtype, torch.dtype):
         raise ValueError(f"dtype in config must be a torch.dtype, but got {dtype}")
 

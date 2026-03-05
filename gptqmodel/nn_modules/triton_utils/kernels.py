@@ -6,7 +6,27 @@
 import torch
 import triton
 import triton.language as tl
-from torch.amp import custom_bwd, custom_fwd
+try:
+    from torch.amp import custom_bwd, custom_fwd
+except ImportError:
+    from torch.cuda.amp import custom_bwd as _cuda_custom_bwd
+    from torch.cuda.amp import custom_fwd as _cuda_custom_fwd
+
+    def custom_fwd(*args, **kwargs):
+        kwargs.pop("device_type", None)
+        if args and callable(args[0]) and len(args) == 1 and not kwargs:
+            return _cuda_custom_fwd(args[0])
+        def decorator(fn):
+            return _cuda_custom_fwd(fn, *args, **kwargs)
+        return decorator
+
+    def custom_bwd(*args, **kwargs):
+        kwargs.pop("device_type", None)
+        if args and callable(args[0]) and len(args) == 1 and not kwargs:
+            return _cuda_custom_bwd(args[0])
+        def decorator(fn):
+            return _cuda_custom_bwd(fn, *args, **kwargs)
+        return decorator
 
 from ...utils.logger import setup_logger
 from ...utils.torch import HAS_XPU

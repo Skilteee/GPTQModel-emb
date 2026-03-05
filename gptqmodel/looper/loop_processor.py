@@ -151,14 +151,9 @@ class LoopProcessor:
             total_input_ids_length = 0
             max_input_id_length = 0
             for row in calibration:
-                input_ids = row["input_ids"]
+                input_ids = row["input_ids"] if "input_ids" in row else row['embed_inputs']
                 if isinstance(input_ids, torch.Tensor):
-                    if input_ids.dim() <= 2:
-                        input_ids_length = input_ids.shape[-1]
-                    else:
-                        raise ValueError(
-                            "Expected a 1-dimensional tensor or 2-dimensional tensor for 'input_ids', but got a tensor with {0} dimensions.".format(
-                                input_ids.dim()))
+                    input_ids_length = input_ids.shape[1]
                 else:
                     input_ids_length = len(input_ids)
 

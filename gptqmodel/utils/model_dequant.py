@@ -567,8 +567,22 @@ def convert_gptq_file(path: Path, target_dtype: torch.dtype, config: dict, devic
         qzeros = buf["qzeros"]
         scales = buf["scales"]
         g_idx = buf["g_idx"].to(torch.long)
+        num_groups = scales.shape[0]
+        # GPTQ kernels treat negative g_idx as wrapped indices; match that here.
+        if (g_idx < 0).any():
+            g_idx = torch.where(g_idx < 0, g_idx + num_groups, g_idx)
+        if g_idx.min().item() < 0 or g_idx.max().item() >= num_groups:
+            raise ValueError(
+                f"g_idx out of range after normalization (min={g_idx.min().item()}, "
+                f"max={g_idx.max().item()}, groups={num_groups}) for module {prefix}"
+            )
 
         bits = config.get("bits", 4)
+        checkpoint_format = (config.get("checkpoint_format") or "").lower()
+        fmt = (config.get("format") or "").lower()
+        # GPTQ v1 checkpoints store qzeros with a -1 offset per packed value.
+        if checkpoint_format == "gptq" and fmt == "gptq":
+            qzeros = _apply_gptq_v1_to_v2_qzeros_offset(qzeros, bits)
         weight_int = unpack_rows(qweight, bits)
         zeros = unpack_cols(qzeros, bits)
 
@@ -589,6 +603,57 @@ def convert_gptq_file(path: Path, target_dtype: torch.dtype, config: dict, devic
             tensors[prefix + ".bias"] = finalize_for_save(tensors[prefix + ".bias"], target_dtype)
 
     return tensors
+
+
+def _apply_gptq_v1_to_v2_qzeros_offset(qzeros: torch.Tensor, bits: int) -> torch.Tensor:
+    if bits not in (2, 3, 4, 8):
+        raise NotImplementedError("Only 2,3,4,8-bit GPTQ qzeros are supported.")
+
+    if bits == 2:
+        if qzeros.dtype == torch.int64:
+            return qzeros + 0x5555_5555_5555_5555
+        if qzeros.dtype == torch.int32:
+            return qzeros + 0x5555_5555
+        if qzeros.dtype == torch.int16:
+            return qzeros + 0x5555
+        if qzeros.dtype == torch.int8:
+            return qzeros + 0x55
+    elif bits == 3:
+        if qzeros.dtype == torch.int64:
+            offsets = (0x2492_4924_9249_2492, 0x9249_2492_4924_9249, 0x4924_9249_2492_4924)
+        elif qzeros.dtype == torch.int32:
+            offsets = (0x2492_4924, 0x9249_2492, 0x4924_9249)
+        elif qzeros.dtype == torch.int16:
+            offsets = (0x2492, 0x9249, 0x4924)
+        elif qzeros.dtype == torch.int8:
+            offsets = (0x24, 0x92, 0x49)
+        else:
+            raise ValueError(f"Unsupported qzeros dtype: {qzeros.dtype}")
+        qzeros = qzeros.clone()
+        qzeros[:, range(0, qzeros.shape[1], 3)] += offsets[0]
+        qzeros[:, range(1, qzeros.shape[1], 3)] += offsets[1]
+        qzeros[:, range(2, qzeros.shape[1], 3)] += offsets[2]
+        return qzeros
+    elif bits == 4:
+        if qzeros.dtype == torch.int64:
+            return qzeros + 0x1111_1111_1111_1111
+        if qzeros.dtype == torch.int32:
+            return qzeros + 0x1111_1111
+        if qzeros.dtype == torch.int16:
+            return qzeros + 0x1111
+        if qzeros.dtype == torch.int8:
+            return qzeros + 0x11
+    elif bits == 8:
+        if qzeros.dtype == torch.int64:
+            return qzeros + 0x0101_0101_0101_0101
+        if qzeros.dtype == torch.int32:
+            return qzeros + 0x0101_0101
+        if qzeros.dtype == torch.int16:
+            return qzeros + 0x0101
+        if qzeros.dtype == torch.int8:
+            return qzeros + 0x01
+
+    raise ValueError(f"Unsupported qzeros dtype: {qzeros.dtype}")
 
 
 def convert_compressed_pack_file(

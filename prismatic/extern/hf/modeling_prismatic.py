@@ -721,7 +721,7 @@ class PrismaticForConditionalGeneration(PrismaticPreTrainedModel):
 
 class OpenVLAForActionPrediction(PrismaticForConditionalGeneration):
     config_class: PretrainedConfig = OpenVLAConfig
-    _supports_sdpa = True
+    # _supports_sdpa = True
 
     def __init__(self, config: OpenVLAConfig) -> None:
         super().__init__(config)
@@ -1088,6 +1088,6 @@ class OpenVLAForActionPrediction(PrismaticForConditionalGeneration):
         unnorm_key = self._check_unnorm_key(self.norm_stats, unnorm_key)
         return self.norm_stats[unnorm_key]["action"]
 
-    @_supports_sdpa.setter
-    def _supports_sdpa(self, value):
-        self.__supports_sdpa = value
+    # @_supports_sdpa.setter
+    # def _supports_sdpa(self, value):
+    #     self.__supports_sdpa = value
